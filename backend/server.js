@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 const usersDb = nano.db.use("users"); // Connect to "users" database
+const postsDb = nano.db.use("posts");
 
 // Register Endpoint with Duplicate Check
 app.post("/register", async (req, res) => {
@@ -74,6 +75,48 @@ app.post("/login", async (req, res) => {
         res.status(500).json({ error: "Error logging in", details: error.message });
     }
 });
+
+
+
+// Blog Post Submission Endpoint
+app.post("/create-post", async (req, res) => {
+    const { title, content } = req.body;
+    if (!title || !content) {
+        return res.status(400).json({ message: "Title and content required" });
+    }
+
+    const newPost = {
+        title,
+        content,
+        timestamp: new Date().toLocaleString("en-US", { timeZone: "Asia/Manila" }) // Manila time
+    };
+
+    try {
+        await postsDb.insert(newPost);
+        res.json({ message: "Post created successfully" });
+    } catch (error) {
+        res.status(500).json({ error: "Error saving post", details: error });
+    }
+});
+
+app.get("/posts", async (req, res) => {
+    try {
+        const response = await postsDb.list({ include_docs: true });
+        const posts = response.rows.map(row => ({
+            id: row.doc._id,
+            title: row.doc.title,
+            content: row.doc.content,
+            timestamp: row.doc.timestamp
+        }));
+
+        res.json(posts);
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching posts", details: error.message });
+    }
+});
+
+
+
 
 // Start the server
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));

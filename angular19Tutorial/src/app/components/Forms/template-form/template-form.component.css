@@ -1,0 +1,55 @@
+/* General Form Styling */
+form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Input Fields */
+  .form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Select Dropdown */
+  .form-select {
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  
+  .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Button Styling */
+  .btn-primary {
+    background: #007bff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background: #0056b3;
+  }
+  
+  /* Validation Messages */
+  .valid-feedback, .invalid-feedback {
+    font-size: 14px;
+  }
+  
+  /* Checkbox Styling */
+  .form-check-input {
+    transform: scale(1.2);
+    margin-right: 5px;
+  }
+  

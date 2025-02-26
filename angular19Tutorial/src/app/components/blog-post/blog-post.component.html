@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Form</title>
+    <link rel="stylesheet" href="blog-post.component.css">
+</head>
+<body>
+    <!-- Back Button -->
+    <button class="back-button" style=" margin-top: -10px; margin-left: 90%; width: 50px; height: 50px; border-radius: 200px; font-size:20px; background-color: red;" (click)="goBack()">X</button>
+
+    <h2>Create a Blog Post</h2>
+    
+    <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+        <label for="title">Title:</label>
+        <input type="text" id="title" formControlName="title" name="title" required>
+
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" formControlName="content" rows="5" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

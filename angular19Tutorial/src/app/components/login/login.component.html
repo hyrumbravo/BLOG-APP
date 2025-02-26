@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form Website</title>
+    <link rel="stylesheet" href="login.component.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text"  formControlName="username" placeholder="Username" required>
+
+            </div>
+            <div class="input-box">
+                <input type="password" formControlName="password" name="password"  placeholder="Password" required>
+           
+            </div>
+
+            <button class="btn login" >Login</button>
+            
+        </form>
+        <div class="register-link">
+            <p>Don't have an account? <span routerLink="/register">Register</span></p>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+
+<div class="blog-container">
+  <h1 class="blog-title">"Welcome to the Blog App,<span style="font-style: italic; color: green;"> {{ fullname }}</span> Start writing your next great post."</h1>
+  <button id="uniqueButton"  routerLink="/blog-post" ><span >Create a Post</span></button>
+  
+  
+  <div *ngIf="posts.length === 0" class="no-posts">
+    <p>No posts available.</p>
+  </div>
+
+  <div *ngFor="let post of posts" class="blog-post">
+    <h2 *ngIf="!post.isEditing" class="post-title">{{ post.title }}</h2>
+    <input *ngIf="post.isEditing" [(ngModel)]="post.title" class="edit-input" />
+
+    <hr class="divider" />
+
+    <p *ngIf="!post.isEditing" class="post-content">{{ post.content }}</p>
+    <textarea *ngIf="post.isEditing" [(ngModel)]="post.content" class="edit-textarea"></textarea>
+
+    <p class="post-timestamp">Posted on: {{ post.timestamp }}</p>
+    <p class="post-fullname">Posted by: {{ post.fullname }}</p>
+
+    
+
+    <!-- Edit & Save Buttons -->
+    <button *ngIf="!post.isEditing" class="edit-button" (click)="enterEditMode(post)">Edit</button>
+    <button *ngIf="post.isEditing" class="save-button" (click)="savePost(post)">Save</button>
+
+    <!-- Delete Button -->
+    <button class="delete-button" (click)="deletePost(post)">Delete</button>
+  </div>
+</div>

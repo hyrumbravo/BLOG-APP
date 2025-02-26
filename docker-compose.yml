@@ -1,0 +1,79 @@
+# version: '3.8'
+
+# services:
+#   couchdb:
+#     image: couchdb:latest
+#     container_name: couchdb
+#     restart: always
+#     ports:
+#       - "5984:5984"
+#     environment:
+#       - COUCHDB_USER=hyrumsapurco27
+#       - COUCHDB_PASSWORD=july272002
+#     networks:
+#       - blog-network
+
+#   backend:
+#     build: ./backend
+#     container_name: blog-backend
+#     depends_on:
+#       - couchdb
+#     environment:
+#       - COUCHDB_URL=http://hyrumsapurco27:july272002@192.168.1.121:5984
+#     ports:
+#       - "3000:3000"
+#     networks:
+#       - blog-network
+#     restart: always
+
+#   frontend:
+#     build: ./angular19Tutorial
+#     container_name: blog-frontend
+#     depends_on:
+#       - backend
+#     ports:
+#       - "8081:80"
+#     networks:
+#       - blog-network
+#     restart: always
+
+# networks:
+#   blog-network:
+#     driver: bridge
+
+
+
+
+
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: blog-backend
+    depends_on: []
+    environment:
+      - COUCHDB_URL=http://hyrumsapurco27:july272002@172.27.16.1:5984
+    ports:
+      - "3000:3000"
+    networks:
+      - blog-network
+    restart: always
+
+  frontend:
+    build: ./angular19Tutorial
+    container_name: blog-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8081:80"
+    networks:
+      - blog-network
+    restart: always
+
+networks:
+  blog-network:
+    driver: bridge
+
+
+
